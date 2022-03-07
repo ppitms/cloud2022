@@ -1,0 +1,37 @@
+server:
+  port: 3344
+spring:
+  application:
+    name: cloud-config-center
+  cloud:
+    config:
+      server:
+        git:
+#          uri: git@github.com:ppitms/springcloud-config.git     #github上面的仓库名字
+          uri: https://github.com/ppitms/springcloud-config.git     #github上面的仓库名字
+          search-paths:
+            - springcloud-config #搜索目录
+#          timeout: 200000
+          username: 1342757536@qq.com
+          password: qazwsx1342757536
+#          force-pull: true
+      label: main     #读取分支
+
+ #rabbitmq相关配置
+  rabbitmq:
+    host: 192.168.177.130
+    port: 5672
+    username: admin
+    password: admin
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka
+
+##rabbitmq相关配置,暴露bus刷新配置的端点
+management:
+  endpoints: #暴露bus刷新配置的端点
+    web:
+      exposure:
+        include: 'bus-refresh'
